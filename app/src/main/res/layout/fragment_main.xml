@@ -15,6 +15,7 @@
         />
 
     <Button
+        android:id="@+id/tell_joke_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/instructions_text_view"

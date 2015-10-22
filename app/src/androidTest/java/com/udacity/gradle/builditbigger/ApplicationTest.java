@@ -1,13 +1,32 @@
 package com.udacity.gradle.builditbigger;
 
-import android.app.Application;
-import android.test.ApplicationTestCase;
+import android.content.Intent;
+import android.support.test.espresso.intent.rule.IntentsTestRule;
+import android.support.test.runner.AndroidJUnit4;
 
-/**
- * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
- */
-public class ApplicationTest extends ApplicationTestCase<Application> {
-    public ApplicationTest() {
-        super(Application.class);
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.intent.Intents.intended;
+import static android.support.test.espresso.intent.matcher.IntentMatchers.hasExtra;
+import static android.support.test.espresso.intent.matcher.IntentMatchers.toPackage;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
+
+@RunWith(AndroidJUnit4.class)
+public class ApplicationTest{
+
+    @Rule
+    public IntentsTestRule<MainActivity> rule = new IntentsTestRule<>(MainActivity.class);
+
+    @Test
+    public void retrieveJokeOnClick() {
+        onView(withId(R.id.tell_joke_button)).perform(click());
+        intended(toPackage("com.udacity.gradle.builditbigger"));
+        intended(hasExtra(equalTo(Intent.EXTRA_TEXT), notNullValue()));
     }
 }
