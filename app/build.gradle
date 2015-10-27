@@ -3,7 +3,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 22
     buildToolsVersion "21.1.2"
-
     defaultConfig {
         applicationId "com.udacity.gradle.builditbigger"
         minSdkVersion 10
@@ -18,17 +17,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors {
+        free {
+            applicationId 'com.udacity.gradle.builditbigger.free'
+        }
+    }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    // Added for AdMob
     compile project(':jokeviewer')
     compile project(path: ':backend', configuration: 'android-endpoints')
-    compile 'com.android.support:appcompat-v7:22.1.0'
-    compile 'com.google.android.gms:play-services-ads:8.1.0'
+    compile 'com.android.support:appcompat-v7:22.2.0'
 
-    compile 'com.google.code.findbugs:jsr305:2.0.1'
+    freeCompile 'com.google.code.findbugs:jsr305:2.0.1'
+    freeCompile 'com.google.android.gms:play-services-ads:8.1.0'
+
     androidTestCompile 'com.android.support.test:runner:0.3'
     androidTestCompile 'com.android.support.test:rules:0.3'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2'
