@@ -38,7 +38,9 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void tellJoke(View view){
-        new GetJokeAsyncTask().execute(this);
+    public void tellJoke(View view) {
+        final MainActivityFragment fragment = (MainActivityFragment)
+                getSupportFragmentManager().findFragmentById(R.id.fragment);
+        fragment.tellJoke();
     }
 }
