@@ -18,7 +18,13 @@ public class GetJokeAsyncTask extends AsyncTask<Context, Void, String> {
 
     private static JokeApi jokeApiService = null;
 
+    private Callback callback;
+
     private Context context;
+
+    public GetJokeAsyncTask(Callback callback) {
+        this.callback = callback;
+    }
 
     @Override
     protected String doInBackground(Context... params) {
@@ -48,5 +54,10 @@ public class GetJokeAsyncTask extends AsyncTask<Context, Void, String> {
     protected void onPostExecute(String joke) {
         final Intent intent = JokeView.makeIntent(context, joke);
         context.startActivity(intent);
+        callback.done();
+    }
+
+    public interface Callback{
+        void done();
     }
 }

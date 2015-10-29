@@ -16,7 +16,7 @@ import com.google.android.gms.ads.InterstitialAd;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainActivityFragment extends Fragment {
+public class MainActivityFragment extends BaseFragment {
 
     private InterstitialAd mInterstitialAd;
 
@@ -24,12 +24,11 @@ public class MainActivityFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_main, container, false);
+        View root = super.onCreateView(inflater, container, savedInstanceState);
 
         AdView mAdView = (AdView) root.findViewById(R.id.adView);
         // Create an ad request. Check logcat output for the hashed device ID to
@@ -69,9 +68,5 @@ public class MainActivityFragment extends Fragment {
         } else {
             getJoke();
         }
-    }
-
-    private void getJoke() {
-        new GetJokeAsyncTask().execute(getActivity());
     }
 }

@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainActivityFragment extends Fragment {
+public class MainActivityFragment extends BaseFragment {
 
 
     public MainActivityFragment() {
@@ -22,10 +22,10 @@ public class MainActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     public void tellJoke() {
-        new GetJokeAsyncTask().execute(getActivity());
+        getJoke();
     }
 }
